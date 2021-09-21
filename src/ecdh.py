@@ -360,7 +360,7 @@ class Program:
             f"Encrypt a file    | {__file__} -i \"./keys/private.pem\" -e \"./test.txt\" -k \"./keys/public.pem\"",
             f"Decrypt a message | {__file__} -i \"./keys/private.pem\" -d <ciphertext>",
             f"Decrypt a file    | {__file__} -i \"./keys/private.pem\" -d \"./output/test.txt.enc\"\n",
-            f"For more information please visit: https://github.com/crashware",
+            f"For more information please visit: https://github.com/crashware/metasign",
             f"To obtain live updates please visit: https://twitter.com/crashware"
         ]
         self._print_greeting()

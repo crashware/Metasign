@@ -133,3 +133,5 @@ dmypy.json
 *.exe
 *.db
 *.sql
+*.pem
+*.enc
