@@ -83,7 +83,7 @@ We'll import a private and public key assuming the key pair exists within a dire
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134223656-9dbea47a-c459-47f2-8a73-eafeaf05c6b8.png)
 
 ### Help & Usage
-Below is an image of all of the help and usage information currently available for Metasign and the entire ECDH/ECDSA suite. There are multiple future plans for more features, options, and other updates related to the project as well. With advances in technology and the algorithms used there is also a push to become quantum resistant by implementing things such as Supersingular Isogeny Diffie-Hellman and other lattice based algorithms.
+Below is an image containing all of the help and usage information currently available for Metasign and the entire ECDH/ECDSA suite. There are multiple future plans for more features, options, and other updates related to the project as well. With advances in technology and the algorithms used there is also a push to become quantum resistant by implementing things such as Supersingular Isogeny Diffie-Hellman and other lattice based mechanisms.
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134224835-0bfc65bd-7034-4a33-a4fc-b63231f0351f.png)
 
