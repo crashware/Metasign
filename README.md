@@ -92,7 +92,7 @@ Below is an image containing all of the help and usage information currently ava
 This was the initial release of **Metasign**! 🍀
 
 # License
-Copyright © 2021 CRash
+Copyright © 2021 CRash (https://github.com/crashware/Metasign)
 
 All rights reserved.
 
