@@ -51,7 +51,7 @@ Messages and files both can be encrypted as Metasign will automatically detect i
 
 - **Encrypting a string message**:  
 We'll load a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
+<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
@@ -71,7 +71,7 @@ Messages and files both can be decrypted as Metasign will automatically detect i
 
 - **Decrypting a string message**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -d "<ciphertext>"`  
+<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -d "<ciphertext>"`  
 > **Note**: Ciphertext is the encrypted data like the generated data above in the `Encrypting Data` section .  
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134222422-d936c10a-affa-413f-98d3-37855e6a39ab.png)
