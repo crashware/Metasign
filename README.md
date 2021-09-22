@@ -9,7 +9,7 @@ A lightweight ECDH and ECDSA application for generating key pairs and protecting
 - Dynamic loading of Python modules.
 
 ___
-> **Note**: The generation, signing, and verifying of data using ECDSA is currently unavailable and will be made so as soon as modifications are complete.
+> **Note**: The generation, signing, and verifying of data using ECDSA is currently unavailable and will be made so as soon as modifications have been complete.
 ___
 
 # Requirements
@@ -51,7 +51,7 @@ Messages and files both can be encrypted as Metasign will automatically detect i
 
 - **Encrypting a string message**:  
 We'll load a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
+<br/>`python3 ecdh.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
@@ -61,8 +61,8 @@ nroeb4lTcid9DiSlVlcv4g==LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUhZd0VBWUhLb1pJemow
 ```
 
 - **Encrypting a file**:  
-Import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `data.txt` exists. When a file is encrypted an output directory is created called `output` in order to organize and more easily identify the location of cipherdata and plaint text messages:
-<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -e "./data.txt" -k "./keys/public.pem"`
+Import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `data.txt` exists. When a file is encrypted an output directory is created called `output` in order to organize and more easily identify the location of cipherdata and plaintext messages:
+<br/>`python3 ecdh.py -i "./keys/private.pem" -e "./data.txt" -k "./keys/public.pem"`
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
@@ -71,14 +71,14 @@ Messages and files both can be decrypted as Metasign will automatically detect i
 
 - **Decrypting a string message**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -d "<ciphertext>"`  
+<br/>`python3 ecdh.py -i "./keys/private.pem" -d "<ciphertext>"`  
 > **Note**: Ciphertext is the encrypted data like the generated data above in the `Encrypting Data` section .  
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134222422-d936c10a-affa-413f-98d3-37855e6a39ab.png)
 
 - **Decrypting a file**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `data.txt.enc` exists:
-<br/><br/>`python3 ecdh.py -i "./keys/private.pem" -d "./output/data.txt.enc"`
+<br/>`python3 ecdh.py -i "./keys/private.pem" -d "./output/data.txt.enc"`
 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134223656-9dbea47a-c459-47f2-8a73-eafeaf05c6b8.png)
 
