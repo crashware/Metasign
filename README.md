@@ -67,7 +67,7 @@ Import a private and public key assuming the key pair exists within a directory 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
 ### Decrypting Data
-Messages and files both can be decrypted as Metasign will automatically detect if the input is a system file path or string. All that is required to decrypt a message or file is the private key associated with the public key that originally encrypted the data and the data itself. A public key from the sender can also be imported using `-k or --key`.
+Messages and files both can be decrypted as Metasign will automatically detect if the input is a system file path or string. All that is required to decrypt a message or file is the private key associated with the public key that originally encrypted the data and the data itself. A public key can also be imported using `-k or --key`.
 
 - **Decrypting a string message**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` or similar:
