@@ -1,5 +1,5 @@
 # Metasign
-A lightweight ECDH and ECDSA application/library for generating key pairs and protecting data across multiple operating systems in a more portable format. Typical usage conditions such as the act of sharing a public key with an encrypted ECDH message have been resolved with minimal modifications to the overall base cryptosystem. All messages have the sender's public key automatically appended to the ciphertext, however, another public key may be provided in the event a key can't be found within the message itself.
+A lightweight ECDH and ECDSA application/library for generating key pairs and protecting data across multiple operating systems in a more portable format. Typical usage conditions such as the act of sharing a public key with an encrypted ECDH message have been resolved with minimal modifications to the overall base cryptosystem. All messages have the sender's public key automatically appended to the ciphertext, however, another public key may be provided in the event that a key cannott be found within the message itself.
 
 # Features
 - Generation of ECDH key pairs as a string or a file
