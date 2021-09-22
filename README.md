@@ -44,7 +44,7 @@ E/p25pM6TggPyr0L9xI5LN/FjpdtJ8lLsEm4Z3J5jjt/jAHZLBH8myw=
 ![MetasignKeyGenOutput](https://user-images.githubusercontent.com/90793958/134212117-da4d6c5e-2d8b-45ee-bac5-f74dadce029f.png)
 
 ### Encrypting Data
-Messages and files both can be encrypted as Metasign will automatically detect if the input is a file path or string. The encrypted data will also contain the public key associated with the private key used to actually perform the encryption, so pre-sharing, or post-sharing, of said public key is not necessary. You can just share the data!
+Messages and files both can be encrypted as Metasign will automatically detect if the input is a system file path or string. The encrypted data will also contain the public key associated with the private key used to actually perform the encryption, so pre-sharing, or post-sharing, of said public key is not necessary. You can just share the data!
 > **Note**: Keys can be used directly in the terminal as a string rather than reading them from a file .  
 
 > **Important**: *All* encryption functions require a private and public key to be imported, e.g. `-i or --import` and `-k or --key`, in order to work properly.
@@ -67,7 +67,7 @@ Import a private and public key assuming the key pair exists within a directory 
 ![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
 ### Decrypting Data
-Messages and files both can be decrypted as Metasign will automatically detect if the input is a file path or string. All that is required to decrypt a message or file is the private key associated with the public key that originally encrypted the data and the data itself. A public key from the sender can also be imported using `-k or --key`.
+Messages and files both can be decrypted as Metasign will automatically detect if the input is a system file path or string. All that is required to decrypt a message or file is the private key associated with the public key that originally encrypted the data and the data itself. A public key from the sender can also be imported using `-k or --key`.
 
 - **Decrypting a string message**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` or similar:
