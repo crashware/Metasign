@@ -40,6 +40,15 @@ E/p25pM6TggPyr0L9xI5LN/FjpdtJ8lLsEm4Z3J5jjt/jAHZLBH8myw=
 -----END PRIVATE KEY-----
 ```
 
+Here is the public key generated above:
+```
+-----BEGIN PUBLIC KEY-----
+MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEIiaRmA6Ws9tew2S8EcVr0TU5ASFGfTY+
+l0xXHTcmfA0XrtDUNflVFJKcdW1/bvIWZs1cPvTw+u7NdV7Ws1cviduEGW9AUYE5
+CAxQcW3Y+JMCfD08j7nZElF6foPfFjD1
+-----END PUBLIC KEY-----
+```
+
 - **Generate and write keys to a directory**:  
 `python3 metasign.py -o "./keys"`
 > **Note**: Arguments do not require quotations but can be used for readability.
