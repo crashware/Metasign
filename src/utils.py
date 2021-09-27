@@ -2,7 +2,7 @@
 # ########################################################################
 # Program: Metasign
 # Author: "CRash"
-# Version: "1.0.0"
+# Version: "1.1.0"
 # Date: 09/14/21
 # #########################################################################
 # utils.py - Contains common tools and reusable functionality.

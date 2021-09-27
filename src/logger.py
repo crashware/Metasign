@@ -2,7 +2,7 @@
 # ########################################################################
 # Program: Metasign
 # Author: "CRash"
-# Version: "1.0.0"
+# Version: "1.1.0"
 # Date: 09/14/21
 # #########################################################################
 # logger.py - Controls all aspects of logging for the Metasign.
@@ -13,8 +13,8 @@
 import os
 import sys
 from datetime import datetime
-from colors import Colors
 from utils import SystemUtils
+from colors import Colors
 
 # Obtains the current working directory and appends the log folder and current datetime as the log file.
 _default_log_path = f"{sys.path[0]}\\logs\\" if SystemUtils().get_system() == SystemUtils().windows else f"{sys.path[0]}/logs/"

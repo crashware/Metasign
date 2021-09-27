@@ -4,13 +4,16 @@ A lightweight ECDH and ECDSA application/library for generating key pairs and pr
 # Features
 - Generation of ECDH key pairs as a string or a file
 - Encryption & Decryption of data as a string or a file
+- Signing & Verification of data as a string or a file
+- Checksum calculations of data as a string or a file
+    - MD5
+    - SHA1
+    - SHA224
+    - SHA256
+    - SHA512
 - Custom logging with color support and optional output
 - Dynamic garbage collection of cache files
 - Dynamic loading of Python modules
-
-___
-> **Note**: The generation, signing, and verifying of data using ECDSA is currently unavailable and will be made so as soon as modifications have been completed.
-___
 
 # Requirements
 - **Python 3.8+**  
@@ -23,9 +26,9 @@ ___
 Currently keys are generated using a SECP384R1 curve and can be displayed as a string or written as files.
 
 - **Generate and display keys**:  
-`python3 ecdh.py`
+`python3 metasign.py`
   
-![MetasignKeyGen](https://user-images.githubusercontent.com/90793958/134210025-b9680925-95f8-4efc-b3a3-748c0a36da6e.png)
+![MetasignKeyGen](https://user-images.githubusercontent.com/90793958/134863802-7381697f-bc35-4ac5-b3de-cb02af5a6ea2.png)
 
 Here is the private key generated above:
 ```
@@ -38,7 +41,7 @@ E/p25pM6TggPyr0L9xI5LN/FjpdtJ8lLsEm4Z3J5jjt/jAHZLBH8myw=
 ```
 
 - **Generate and write keys to a directory**:  
-`python3 ecdh.py -o "./keys"`
+`python3 metasign.py -o "./keys"`
 > **Note**: Arguments do not require quotations but can be used for readability.
 
 ![MetasignKeyGenOutput](https://user-images.githubusercontent.com/90793958/134212117-da4d6c5e-2d8b-45ee-bac5-f74dadce029f.png)
@@ -51,9 +54,9 @@ Messages and files both can be encrypted as Metasign will automatically detect i
 
 - **Encrypting a string message**:  
 We'll load a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
+<br/>`python3 metasign.py -i "./keys/private.pem" -e "Hello, World!" -k "./keys/public.pem"`  
 
-![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
+![MetasignEncryptedMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
 Here is the encrypted data generated above:
 ```
@@ -62,32 +65,98 @@ nroeb4lTcid9DiSlVlcv4g==LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUhZd0VBWUhLb1pJemow
 
 - **Encrypting a file**:  
 Import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `data.txt` exists. When a file is encrypted an output directory is created called `output` in order to organize and more easily identify the location of cipherdata and plaintext messages:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -e "./data.txt" -k "./keys/public.pem"`
+<br/>`python3 metasign.py -i "./keys/private.pem" -e "./data.txt" -k "./keys/public.pem"`
 
-![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
+![MetasignEncryptedFile](https://user-images.githubusercontent.com/90793958/134219465-77423986-6812-4d84-86d5-e0cbccabef08.png)
 
 ### Decrypting Data
 Messages and files both can be decrypted as Metasign will automatically detect if the input is a system file path or string. All that is required to decrypt a message or file is the private key associated with the public key that originally encrypted the data and the data itself. A public key can also be imported using `-k or --key`.
 
 - **Decrypting a string message**:  
 We'll import a private and public key assuming the key pair exists within a directory called `keys` or similar:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -d "<ciphertext>"`  
-> **Note**: Ciphertext is the encrypted data like the generated data above in the `Encrypting Data` section .  
+<br/>`python3 metasign.py -i "./keys/private.pem" -d "<ciphertext>"`  
+> **Note**: Ciphertext is the encrypted data like the generated data above in the `Encrypting Data` section.
 
-![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134222422-d936c10a-affa-413f-98d3-37855e6a39ab.png)
+![MetasignDecryptedMessage](https://user-images.githubusercontent.com/90793958/134222422-d936c10a-affa-413f-98d3-37855e6a39ab.png)
 
 - **Decrypting a file**:  
-We'll import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `data.txt.enc` exists:
-<br/>`python3 ecdh.py -i "./keys/private.pem" -d "./output/data.txt.enc"`
+We'll import a private and public key assuming the key pair exists within a directory called `keys` and also assuming a file called `./output/data.txt.enc` exists:
+<br/>`python3 metasign.py -i "./keys/private.pem" -d "./output/data.txt.enc"`
 
-![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134223656-9dbea47a-c459-47f2-8a73-eafeaf05c6b8.png)
+![MetasignDecryptedFile](https://user-images.githubusercontent.com/90793958/134223656-9dbea47a-c459-47f2-8a73-eafeaf05c6b8.png)
+
+### Signing & Verifying Data
+Messages and files both can be signed/verified as Metasign will automatically detect if the input is a system file path or string. When a file is signed an output directory is created called `output` in order to organize and more easily identify the location of the original file's signature.
+
+- **Signing a string message**:  
+We'll import a private key assuming the key pair exists within a directory called `keys` or similar:
+<br/>`python3 metasign.py -i "./keys/private.pem" -s "Hello, World!"`
+
+![MetasignSignedMessage](https://user-images.githubusercontent.com/90793958/134862982-1b0070a0-8b05-4381-8f1d-ae840ad68f2e.png)
+
+Here is the signature generated from the above message:
+```
+MGYCMQClT+LWJYPYjOQj5qTIuoUjXzjEXDcGWURXafwAgohfi7hppAk9XhtVRGQD6sm/OQsCMQDLMAJOZcjzCqbHcadiR6c/zJnoMCifJgjLB5dbc+4PeOreZG7EFRRVBI+Z4OtOAHI=
+```
+
+- **Verifying a string message**:  
+We'll import the public key associated with the signing private key assuming the key pair exists within a directory called `keys`, and that the signature of the signed data and the original data itself exist:
+<br/>`python3 metasign.py -k "./keys/public.pem" -v "<signature>" "Hello, World!"`
+> **Note**: Signature is the generated output shown about in the `Signing a string message` section above.
+
+![MetasignVerifiedFile](https://user-images.githubusercontent.com/90793958/134862984-6028f9d4-3957-49ad-978b-d08453d11dac.png)
+
+- **Signing a file**:  
+We'll import a private key assuming the key pair exists within a directory called `keys` or similar:
+<br/>`python3 metasign.py -i "./keys/private.pem" -s "./data.txt"`
+
+![MetasignSignedFile](https://user-images.githubusercontent.com/90793958/134862978-67720c54-9f3b-47d5-a0f2-017507ec615c.png)
+
+Here is the signature generated from the above file:
+```
+MGUCMAw4BiSKID6YBH6j4+pTmR7EQenMmY50zG23FpsCkrZo57ARHrQ/RuOKTitqTWmQRAIxALXIQTGbflgkppABQWEEx7jvwavDOazzlWveB2rq8SeYWfiOyCngMnSLLNNahH9t4w==
+```
+
+- **Verifiying a file**:  
+We'll import the public key associated with the signing private key assuming the key pair exists within a directory called `keys` and also assuming a signature file called `./output/data.txt.sig` and the original data file called `./data.txt` exist:
+<br/>`python3 metasign.py -k "./keys/public.pem" -v "./output/data.txt.sig" "./data.txt"`
+
+![MetasignVerifiedFile](https://user-images.githubusercontent.com/90793958/134862985-e5f1553f-b3df-48fb-b9ef-58ff085c08c8.png)
+
+### Generating Checksums
+Generating a message or file is done in pure Python with the help of the `hashlib` library. Hashing data with Metasign is extremely easy and fast and requires only a few parameters such as the message, file, and the algorithm desired to be used for the calculation. Currently, only MD5, SHA1, SHA224, SHA256, SHA384, and SHA512 are supported.
+
+- **Hashing a string message**:  
+<br/>`python3 metasign.py -c "Hello, World!" -a md5`
+
+![MetasignMessageChecksum](https://user-images.githubusercontent.com/90793958/134862988-0414ebec-dc68-442f-8259-43b6164953de.png)
+
+Here is the checksum generated from the above message:
+```
+65a8e27d8879283831b664bd8b7f0ad4
+```
+
+- **Hashing a file**:
+<br/>`python3 metasign.py -c "./data.txt" -a sha512`
+
+![MetasignFileChecksum](https://user-images.githubusercontent.com/90793958/134862991-efebc511-0e04-446b-80de-895b85a87958.png)
+
+Here is the checksum generated from the above file:
+```
+921618bc6d9f8059437c5e0397b13f973ab7c7a7b81f0ca31b70bf448fd800a460b67efda0020088bc97bf7d9da97a9e2ce7b20d46e066462ec44cf60284f9a7
+```
 
 ### Help & Usage
 Below is an image containing all of the help and usage information currently available for Metasign and the entire ECDH/ECDSA suite. There are multiple future plans for more features, options, and other updates related to the project as well. With advances in technology and the algorithms used there is also a push to become quantum resistant by implementing things such as Supersingular Isogeny Diffie-Hellman and other lattice based systems.
 
-![MetasignEncryptionMessage](https://user-images.githubusercontent.com/90793958/134224835-0bfc65bd-7034-4a33-a4fc-b63231f0351f.png)
+![MetasignHelpDocumentation](https://user-images.githubusercontent.com/90793958/134863813-c6381e0f-2849-4b6a-8e04-6fcbc42093f4.png)
 
 # Version History
+## **Version 1.1.0**
+- Added signing and verifying of data from either a string message or file
+- Added checksum generation of data from either a string message or file
+- Updated help documentation and readme information
+
 ## **Version 1.0.0**
 This was the initial release of **Metasign**! 🍀
 
