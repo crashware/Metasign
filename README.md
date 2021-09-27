@@ -102,7 +102,7 @@ MGYCMQClT+LWJYPYjOQj5qTIuoUjXzjEXDcGWURXafwAgohfi7hppAk9XhtVRGQD6sm/OQsCMQDLMAJO
 - **Verifying a string message**:  
 We'll import the public key associated with the signing private key assuming the key pair exists within a directory called `keys`, and that the signature of the signed data and the original data itself exist:
 <br/>`python3 metasign.py -k "./keys/public.pem" -v "<signature>" "Hello, World!"`
-> **Note**: Signature is the generated output shown about in the `Signing a string message` section above.
+> **Note**: Signature is the generated output shown above in the `Signing a string message` section above.
 
 ![MetasignVerifiedFile](https://user-images.githubusercontent.com/90793958/134862984-6028f9d4-3957-49ad-978b-d08453d11dac.png)
 
