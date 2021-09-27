@@ -559,19 +559,15 @@ class Program:
         """Decrypts and saves a ciphertext message or the contents of a file into a new file representing the original."""
         def decrypt(data, filename=None):
             try:
-                if self.public_key is not None:
-                    decrypted = self.keypair.decrypt(data, self.public_key)
-                    if filename is not None:
-                        try:
-                            SystemUtils.write_to_file(filename, decrypted)
-                            log.success(f"Decrypted data was saved to '{filename}'!")
-                        except Exception as e:
-                            log.error(e)
-                            sys.exit(2)
-                    else: log.info(f"Displaying decrypted message:\n{decrypted}")
-                else:
-                    self._print_usage()
-                    log.error("A public key is missing in order to decrypt the data.")
+                decrypted = self.keypair.decrypt(data, self.public_key)
+                if filename is not None:
+                    try:
+                        SystemUtils.write_to_file(filename, decrypted)
+                        log.success(f"Decrypted data was saved to '{filename}'!")
+                    except Exception as e:
+                        log.error(e)
+                        sys.exit(2)
+                else: log.info(f"Displaying decrypted message:\n{decrypted}")
             except: log.error("The data could not be decrypted. Either the key is bad or the data encoding/padding is invalid.")
         parameter = args[0]
         if os.path.exists(parameter):
