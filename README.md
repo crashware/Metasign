@@ -126,7 +126,7 @@ Here is the signature generated from the above file:
 MGUCMAw4BiSKID6YBH6j4+pTmR7EQenMmY50zG23FpsCkrZo57ARHrQ/RuOKTitqTWmQRAIxALXIQTGbflgkppABQWEEx7jvwavDOazzlWveB2rq8SeYWfiOyCngMnSLLNNahH9t4w==
 ```
 
-- **Verifiying a file**:  
+- **Verifying a file**:  
 We'll import the public key associated with the signing private key assuming the key pair exists within a directory called `keys` and also assuming a signature file called `./output/data.txt.sig` and the original data file called `./data.txt` exist:
 <br/>`python3 metasign.py -k "./keys/public.pem" -v "./output/data.txt.sig" "./data.txt"`
 
