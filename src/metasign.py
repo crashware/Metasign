@@ -545,7 +545,7 @@ class Program:
             try:
                 log.info(f"Attempting to encrypt the file '{args[0]}'")
                 divider = "\\" if SystemUtils.get_system() == SystemUtils.windows else "/"
-                path = f"{sys.path[0]}{divider}output{divider}"
+                path = f"{os.path.dirname(parameter)}{divider}output{divider}"
                 filename = f"{path}{os.path.basename(parameter)}.enc"
                 encrypt(SystemUtils.read_from_file(parameter), f"{filename}")
             except Exception as e:
@@ -574,7 +574,10 @@ class Program:
             try:
                 log.info(f"Attempting to decrypt the file '{args[0]}'")
                 divider = "\\" if SystemUtils.get_system() == SystemUtils.windows else "/"
-                path = f"{sys.path[0]}{divider}output{divider}"
+                path = ""
+                if not os.path.dirname(parameter).endswith('output'): # Check if the root folder is the output directory.
+                    path = f"{os.path.dirname(parameter)}{divider}output{divider}"
+                else: path = f"{os.path.dirname(parameter)}{divider}"
                 filename = f"{path}{os.path.basename(parameter)}"
                 if filename.endswith(".enc"):
                     filename = filename.replace(".enc", "")
@@ -618,7 +621,7 @@ class Program:
             try:
                 log.info(f"Attempting to sign the file '{args[0]}'")
                 divider = "\\" if SystemUtils.get_system() == SystemUtils.windows else "/"
-                path = f"{sys.path[0]}{divider}output{divider}"
+                path = f"{os.path.dirname(parameter)}{divider}output{divider}"
                 filename = f"{path}{os.path.basename(parameter)}.sig"
                 sign(parameter, f"{filename}")
             except Exception as e:
@@ -691,7 +694,7 @@ class Program:
             try:
                 log.info(f"Attempting to checksum the file '{args[0]}'")
                 divider = "\\" if SystemUtils.get_system() == SystemUtils.windows else "/"
-                path = f"{sys.path[0]}{divider}output{divider}"
+                path = f"{os.path.dirname(parameter)}{divider}output{divider}"
                 filename = f"{path}{os.path.basename(parameter)}.sig"
                 checksum(parameter, f"{filename}")
             except Exception as e:
